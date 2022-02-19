@@ -8,6 +8,16 @@ import (
 	"testing"
 )
 
+func TestMain(m *testing.M) {
+	// Before running test
+	fmt.Println("BEFORE: running unit test")
+
+	m.Run()
+
+	// After running test
+	fmt.Println("AFTER: All unit testing has been executed")
+}
+
 func TestHelloWorld(t *testing.T) {
 	result := HelloWorld("Hanafi")
 	if result != "Hello Hanafi" {

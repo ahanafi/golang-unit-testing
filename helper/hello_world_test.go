@@ -8,6 +8,63 @@ import (
 	"testing"
 )
 
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Hanafi")
+	}
+}
+
+func BenchmarkHelloWorldSecond(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Ahmad")
+	}
+}
+
+// Sub Benchmark
+func BenchmarkSub(b *testing.B) {
+	b.Run("Ahmad", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Ahmad")
+		}
+	})
+
+	b.Run("Hanafi", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Hanafi")
+		}
+	})
+}
+
+// Benchmark Table
+func BenchmarkTable(b *testing.B) {
+	benchmarks := []struct{
+		name string
+		request string
+	} {
+		{
+			name: "Ahmad",
+			request: "Ahmad",
+		},
+		{
+			name: "Hanafi",
+			request: "Hanafi",
+		},
+		{
+			name: "Ahmad Hanafi",
+			request: "Ahmad Hanafi",
+		},
+	}
+
+
+	for _, benchmark := range benchmarks {
+		b.Run(benchmark.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(benchmark.request)
+			}
+		})
+	}
+}
+
 func TestMain(m *testing.M) {
 	// Before running test
 	fmt.Println("BEFORE: running unit test")

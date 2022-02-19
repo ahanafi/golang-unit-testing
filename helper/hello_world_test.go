@@ -63,3 +63,27 @@ func TestSkip(t *testing.T) {
 	expectedResult := "Hello Ahmad"
 	assert.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
 }
+
+// Test SubTest
+func TestSubTest(t *testing.T) {
+	// Will be success
+	t.Run("Ahmad", func(t *testing.T) {
+		result := HelloWorld("Ahmad")
+		expectedResult := "Hello Ahmad"
+		assert.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
+	})
+
+	// Will be success
+	t.Run("Hanafi", func(t *testing.T) {
+		result := HelloWorld("Hanafi")
+		expectedResult := "Hello Hanafi"
+		assert.Equal(t, expectedResult, result, "Result mus be 'Hello Hanafi'")
+	})
+
+	// Will be fail
+	t.Run("Hanif", func(t *testing.T) {
+		result := HelloWorld("Hanif")
+		expectedResult := "Hi Hanif"
+		assert.Equal(t, expectedResult, result, "Result mus be 'Hello Hanif'")
+	})
+}

@@ -3,6 +3,7 @@ package helper
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"testing"
 )
 
@@ -32,4 +33,11 @@ func TestHelloWorldAssertion(t *testing.T) {
 	assert.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
 
 	fmt.Println("TestHelloWorldAssertion has been executed")
+}
+
+func TestHelloWorldRequire(t *testing.T) {
+	result := HelloWorld("Ahmad")
+	expectedResult := "Hello Ahmad"
+	require.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
+	fmt.Println("TestHelloWorldAssertion has been executed") // <-- This is will be not executed when use require.Equal()
 }

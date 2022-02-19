@@ -87,3 +87,36 @@ func TestSubTest(t *testing.T) {
 		assert.Equal(t, expectedResult, result, "Result mus be 'Hello Hanif'")
 	})
 }
+
+// SubTest apply with TableTest
+func TestTableTest(t *testing.T) {
+	// Define test cases data
+	testCases := []struct{
+		name string
+		params string
+		expected string
+	} {
+		{
+			name: "Ahmad",
+			params: "Ahmad",
+			expected: "Hello Ahmad",
+		},
+		{
+			name: "Hanafi",
+			params: "Hanafi",
+			expected: "Hello Hanafi",
+		},
+		{
+			name: "Hanif",
+			params: "Hanif",
+			expected: "Hello Hanif",
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			result := HelloWorld(testCase.params)
+			require.Equal(t, result, testCase.expected)
+		})
+	}
+}

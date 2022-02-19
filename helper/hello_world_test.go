@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"runtime"
 	"testing"
 )
 
@@ -40,4 +41,15 @@ func TestHelloWorldRequire(t *testing.T) {
 	expectedResult := "Hello Ahmad"
 	require.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
 	fmt.Println("TestHelloWorldAssertion has been executed") // <-- This is will be not executed when use require.Equal()
+}
+
+// Skip Testing
+func TestSkip(t *testing.T) {
+	if runtime.GOOS == "linux" {
+		t.Skip("Cannot run test in Linux OS")
+	}
+
+	result := HelloWorld("Ahmad")
+	expectedResult := "Hello Ahmad"
+	assert.Equal(t, expectedResult, result, "Result mus be 'Hello Ahmad'")
 }
